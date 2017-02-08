@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="apple-touch-fullscreen" content="yes">
+  <meta content="black" name="apple-mobile-web-app-status-bar-style">
+  <meta content="telephone=no" name="format-detection">
+  <title>Title</title>
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+  </script>
+</head>
+<style>
+  body, html {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  #btn-todo {
+    position: fixed;
+    top: 10%;
+    width: 100px;
+    height: 30px;
+    left: 50%;
+    margin-left: -50px;
+    background-color: #323c48;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+  }
+
+  .acode {
+    cursor: pointer;
+  }
+</style>
+<body>
+<div id="main" style="width: 100%;height:100%;">
+  <div style="text-align:center; margin-top:30px;" data-acode='0' class="acode">点击</div>
+  <div style="text-align:center; margin-top:30px;" data-acode='4' class="acode">分享按钮</div>
+  <div style="text-align:center; margin-top:30px;" data-acode='5' class="acode">击的按钮</div>
+
+</div>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+  //console.log('wx',wx)
+  wx.config({
+    appId:'wx793c6c4add7474e8', // 必填，公众号的唯一标识
+  });
+  wx.error(function (res) {
+    console.log(res)
+  })
+  function initWXShare(){
+    wx.getNetworkType({
+      success: function (res) {
+        console.log(res);
+        var networkType = res.networkType; // 返回网络类型2g，3g，4g，wifi
+      }
+    });
+  }
+  wx.ready(initWXShare);
+</script>
+<!--OK 同步加jdk 利用异步-->
+<!--<script src="sdk.js"></script>-->
+<script>
+  // 这是点击事件
+  (function (l, e, b, i, s, d, k) {
+    l['LeBIObject'] = s;
+    l[s] = l[s] || function () {
+        (l[s].q = l[s].q || []).push(arguments)
+      }, l[s].l = 1 * new Date();
+      d = e.createElement(b),
+      k = e.getElementsByTagName(b)[0];
+    d.async = 1;
+    d.src = i;
+    k.parentNode.insertBefore(d, k)
+  })(window, document, 'script', './lebi-jssdk.js', 'lebi');
+
+  lebi('config',{
+    autoPV: false,// false 关闭自动pv ok 可以手动设置
+    baidu:false,// 支持三个参数 false关闭 id:每个ip true:模式是true 是minisite.le.com的id 只要百度打来就先初始化
+    le: true,
+  });
+  var url ='www.baidu.com'
+  lebi('sendPV',url); // 支持url 使用场景 单页面操作  可以了百度
+</script>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.js"></script>
+<script>
+
+/*使用方法:
+* 1:页面任何代码都不写 自动pv 大数据和百度
+* 2:config 的时候
+* */
+//share|recharge  ok 可以得到不同的数据  数字和字符串都是ok的
+$('.acode').on('click',function () {
+  lebi('sendAction',5, {btn: 'black-919-red-btn'})
+});
+/*$('.acode').on('click',function () {
+  lebi('sendAction',"click", 'btn=black-919-red-btn')
+});*/
+</script>
+</body>
+</html>
+
